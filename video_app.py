@@ -18,8 +18,9 @@ SITUATION_OPTIONS = ["Affection", "Intent", "Attitude"]
 MECHANISM_OPTIONS = ["Mechanism A", "Socio-Cultural Context Dependency", "Mechanism C"]
 DOMAIN_OPTIONS = ["NULL", "NULL", "NULL"]
 CULTURE_OPTIONS = ["NULL", "NULL", "NULL"]
-Affection_OPTIONS = ["Happy", "Sad", "Disgusted", "Angry", "Fearful", "Bad"]
+Affection_OPTIONS = ["NULL", "Happy", "Sad", "Disgusted", "Angry", "Fearful", "Bad"]
 ATTITUDE_OPTIONS = [
+    "NULL",
     "Supportive", "Appreciative", "Sympathetic", "Neutral", "Indifferent",
     "Disapproving", "Skeptical", "Concerned", "Dismissive", "Contemptuous", "Hostile"
 ]
@@ -60,7 +61,7 @@ def _safe_choice(value: Any, options: List[str], allow_empty: bool = False) -> A
     if value in options:
         return value
     if allow_empty:
-        return ""
+        return "NULL" if "NULL" in options else ""
     return options[0] if options else ""
 
 
