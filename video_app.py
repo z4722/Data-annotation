@@ -367,6 +367,9 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
 
     # ✅ Final safety: make sure text keys are strings right before rendering widgets
     _ensure_text_state(["id", "input_text", "subject", "target", "label_Intent", "rationale"])
+    # Ensure selectbox state values exist in options (avoids ValueError in Streamlit)
+    _normalize_choice_in_state("label_Affection", Affection_OPTIONS, allow_empty=True)
+    _normalize_choice_in_state("label_Attitude", ATTITUDE_OPTIONS, allow_empty=True)
 
     # =========================
     # Left Column: Media Display + (RED BOX AREA) Input + Mechanism/Domain/Culture/Rationale
