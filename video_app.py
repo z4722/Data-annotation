@@ -377,7 +377,7 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
         with media_col:
             # Display media based on file type
             if _is_image(current_path):
-                st.image(str(current_path), use_container_width=True)
+                st.image(str(current_path), use_column_width=True)
                 w, h = _get_image_meta(current_path)
                 if w > 0 and h > 0:
                     st.markdown(
