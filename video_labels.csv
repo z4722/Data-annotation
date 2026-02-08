@@ -1,0 +1,4 @@
+﻿filename,id,input_text,subject,target,situation,mechanism,domain,culture,label_Affection,label_Intent,label_Attitude,rationale,skipped
+15108097_3840_2160_30fps.mp4,,,,,Affection,Socio-Cultural Context Dependency,NULL,NULL,,,,"Rationale: Both Text (""Love my job"") and Visual (Smiling) appear positive on the surface. However, decoding requires external knowledge: identifying the figure as ""Hide the Pain Harold,"" a cultural symbol for suppressed suffering.
+",False
+怕11.png,,,,,,,,,,,,,True
