@@ -15,7 +15,21 @@ MEDIA_DIR = Path("images")  # Directory containing images and videos
 LABELS_CSV = Path("video_labels.csv")
 
 SITUATION_OPTIONS = ["Affection", "Intent", "Attitude"]
-MECHANISM_OPTIONS = ["Mechanism A", "Socio-Cultural Context Dependency", "Mechanism C"]
+MECHANISM_OPTIONS = [
+    "multimodal_incongruity",
+    "figurative_semantics",
+    "affective_deception",
+    "socio_cultural_dependency",
+    "prosocial_deception",
+    "malicious_manipulation",
+    "expressive_aggression",
+    "benevolent_provocation",
+    "dominant_affiliation",
+    "dominant_detachment",
+    "protective_distancing",
+    "submissive_alignment",
+    "null",
+]
 DOMAIN_OPTIONS = ["NULL", "NULL", "NULL"]
 CULTURE_OPTIONS = ["NULL", "NULL", "NULL"]
 Affection_OPTIONS = ["NULL", "Happy", "Sad", "Disgusted", "Angry", "Fearful", "Bad"]
@@ -187,8 +201,8 @@ def _init_session_state() -> None:
         "target": "",
         "situation": SITUATION_OPTIONS[0] if SITUATION_OPTIONS else "",
         "mechanism": MECHANISM_OPTIONS[0] if MECHANISM_OPTIONS else "",
-        "domain": DOMAIN_OPTIONS[0] if DOMAIN_OPTIONS else "",
-        "culture": CULTURE_OPTIONS[0] if CULTURE_OPTIONS else "",
+        "domain": "",
+        "culture": "",
         "label_Affection": "",
         "label_Intent": "",
         "label_Attitude": "",
@@ -205,8 +219,6 @@ def _init_session_state() -> None:
     # Normalize choice keys
     _normalize_choice_in_state("situation", SITUATION_OPTIONS, allow_empty=False)
     _normalize_choice_in_state("mechanism", MECHANISM_OPTIONS, allow_empty=False)
-    _normalize_choice_in_state("domain", DOMAIN_OPTIONS, allow_empty=False)
-    _normalize_choice_in_state("culture", CULTURE_OPTIONS, allow_empty=False)
     _normalize_choice_in_state("label_Affection", Affection_OPTIONS, allow_empty=True)
     _normalize_choice_in_state("label_Attitude", ATTITUDE_OPTIONS, allow_empty=True)
 
@@ -220,8 +232,8 @@ def _load_record_into_inputs(record: Optional[Dict[str, Any]]) -> None:
         st.session_state.target = ""
         st.session_state.situation = SITUATION_OPTIONS[0] if SITUATION_OPTIONS else ""
         st.session_state.mechanism = MECHANISM_OPTIONS[0] if MECHANISM_OPTIONS else ""
-        st.session_state.domain = DOMAIN_OPTIONS[0] if DOMAIN_OPTIONS else ""
-        st.session_state.culture = CULTURE_OPTIONS[0] if CULTURE_OPTIONS else ""
+        st.session_state.domain = ""
+        st.session_state.culture = ""
         st.session_state.label_Affection = ""
         st.session_state.label_Intent = ""
         st.session_state.label_Attitude = ""
@@ -243,8 +255,6 @@ def _load_record_into_inputs(record: Optional[Dict[str, Any]]) -> None:
 
     _normalize_choice_in_state("situation", SITUATION_OPTIONS, allow_empty=False)
     _normalize_choice_in_state("mechanism", MECHANISM_OPTIONS, allow_empty=False)
-    _normalize_choice_in_state("domain", DOMAIN_OPTIONS, allow_empty=False)
-    _normalize_choice_in_state("culture", CULTURE_OPTIONS, allow_empty=False)
     _normalize_choice_in_state("label_Affection", Affection_OPTIONS, allow_empty=True)
     _normalize_choice_in_state("label_Attitude", ATTITUDE_OPTIONS, allow_empty=True)
 
@@ -265,8 +275,11 @@ def main() -> None:
     st.markdown(
         """
 <style>
+/* Hide Streamlit top toolbar/header (Deploy/menu row) */
+header[data-testid="stHeader"] { display: none; }
+
 /* Adjust top padding to prevent header overlap */
-.block-container { padding-top: 1rem; padding-bottom: 0.5rem; }
+.block-container { padding-top: 0.2rem; padding-bottom: 0.5rem; }
 div[data-testid="stVerticalBlock"] { gap: 0.2rem; }
 /* Make primary button more prominent */
 div[data-testid="stButton"] button[kind="primary"] { font-weight: 700; }
@@ -375,13 +388,22 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
     # Left Column: Media Display + (RED BOX AREA) Input + Mechanism/Domain/Culture/Rationale
     # =========================
     with left:
+        # Add top spacer so media/input block sits lower on the page.
+        st.markdown('<div style="height: 1rem;"></div>', unsafe_allow_html=True)
+
+        title_col_left, title_col_right = st.columns([0.48, 0.52], gap="medium")
+        with title_col_left:
+            st.markdown("**Image/Video**")
+        with title_col_right:
+            st.markdown("**ID**")
+
         # This creates the red-box area at the right of the media
         media_col, input_col = st.columns([0.48, 0.52], gap="medium")
 
         with media_col:
             # Display media based on file type
             if _is_image(current_path):
-                st.image(str(current_path), use_column_width=True)
+                st.image(str(current_path), width="stretch")
                 w, h = _get_image_meta(current_path)
                 if w > 0 and h > 0:
                     st.markdown(
@@ -409,13 +431,13 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
 
         with input_col:
             # ✅ Requirement: place Input in the red-box area (title + box like Subject)
-            st.text_input("ID", key="id")
-            st.text_input("Input", key="input_text")
+            st.text_input("ID", key="id", label_visibility="collapsed")
+            st.text_area("Input", key="input_text", height=95)
 
         st.divider()
         st.selectbox("Mechanism", MECHANISM_OPTIONS, key="mechanism")
-        st.selectbox("Domain", DOMAIN_OPTIONS, key="domain")
-        st.selectbox("Culture", CULTURE_OPTIONS, key="culture")
+        st.text_input("Domain", key="domain")
+        st.text_input("Culture", key="culture")
         st.text_area("Rationale", key="rationale", height=50)
 
     # =========================
@@ -423,9 +445,10 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
     # =========================
     with right:
         with st.container():
-            prog = done_count / total if total else 0.0
-            st.progress(prog)
-            st.caption(f"Progress: {done_count}/{total}")
+            # Position progress: follows page navigation (Previous/Pending/Accept/Abandon).
+            pos_prog = (current_index + 1) / total if total else 0.0
+            st.progress(pos_prog)
+            st.caption(f"Progress: {current_index + 1}/{total} | Done: {done_count}/{total}")
 
             nav_cols = st.columns([1, 1, 1, 1], gap="small")
             with nav_cols[0]:

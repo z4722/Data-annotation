@@ -1,0 +1,716 @@
+[
+  {
+    "input": {
+      "id": "affection_1825",
+      "text": "very interesting metaphor of origin!",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Facebook_pic_solved/973.jpg"
+    },
+    "output": {
+      "subject": "speaker",
+      "target": "infant in shell",
+      "situation": "affection",
+      "mechanism": "figurative_semantics",
+      "label": "Warmth",
+      "domain": "Online & Social Media",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\nText evidence: \"very interesting metaphor of origin!\" (positive). Visual evidence: a sleeping infant's face embedded in a seashell; calm seaside at dusk with soft lighting; a small sailboat on the horizon. Cross-modal setup: the text explicitly points to a 'metaphor of origin' while the image depicts a newborn-like face nested in a shell.\n[Pivot]\nMechanism: figurative_semantics. Trigger rule: the image's source domain (shell/sea scene) is mapped to the target domain (birth/origin), making tenderness implicit through metaphor. Minimal justification: the literal praise directs viewers to read the pictorial metaphor as meaning rather than literal description.\n[Inference]\nAffection label: Warmth. Subject/target justification: the speaker's appreciative comment implies fond, tender engagement with the infant imagery. Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "affection_1536",
+      "text": "",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/2/159202.jpg"
+    },
+    "output": {
+      "subject": "Volkswagen Emergency Service",
+      "target": "drivers",
+      "situation": "affection",
+      "mechanism": "socio_cultural_dependency",
+      "label": "Protectiveness",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\n- Text evidence: small copy visible in the image reads \"Volkswagen Emergency Service. 24 hours a day, all year long.\" (informative/neutral tone). \n- Visual evidence: a large searchlight beam projects the Volkswagen logo into a night sky; urban buildings frame the scene; the beam mimics a hero-style signal. \n- Cross-modal setup: the factual emergency-service line pairs with a heroic logo-beam image at surface level.\n[Pivot]\n- Mechanism: socio_cultural_dependency.\n- Trigger rule: the image borrows the culturally specific \"hero signal\" motif (Bat‑Signal) to recode a service statement as guardian-like care.\n- Minimal justification: recognizing the heroic signal requires shared cultural knowledge, which flips a neutral service message into protective concern.\n[Inference]\n- Affection label: Protectiveness.\n- Subject/target justification: Volkswagen Emergency Service is presented as a guardian figure caring for drivers.\n- Domain/Culture usage: General Culture's recognition of the hero-signal trope enables the protective interpretation."
+    }
+  },
+  {
+    "input": {
+      "id": "affection_0521",
+      "text": "now flying nonstop to munich",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/0/37180.jpg"
+    },
+    "output": {
+      "subject": "the airline",
+      "target": "Munich",
+      "situation": "affection",
+      "mechanism": "figurative_semantics",
+      "label": "Warmth",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\n- Text evidence: \"now flying nonstop to munich\" (neutral/informative).\n- Visual evidence: blue sky with small clouds; a large white bubbly foam-like shape at the bottom; airline logos in the lower corner.\n- Cross-modal setup: the copy neutrally announces a flight while the image substitutes a cloud with a beer-foam-like form, pairing destination text with evocative imagery.\n[Pivot]\n- Mechanism: figurative_semantics\n- Trigger rule: the foam-like visual acts as a source→target metaphor (beer/foam → Munich), reframing the literal announcement as a celebratory image; the multimodal metaphor invokes cultural association rather than stating affection.\n- Minimal justification: the image maps a Munich cultural symbol onto the sky, shifting meaning from information to fond evocation.\n[Inference]\n- Affection label: Warmth\n- Subject/target justification: the advertiser (the airline) uses inviting, celebratory imagery to express fondness toward Munich.\n- Domain/Culture usage: general cultural knowledge linking beer imagery to Munich supports this metaphorical, affectionate reading."
+    }
+  },
+  {
+    "input": {
+      "id": "affection_0489",
+      "text": "cold stone",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/0/30640.jpg"
+    },
+    "output": {
+      "subject": "the man",
+      "target": "ice cream cone",
+      "situation": "affection",
+      "mechanism": "multimodal_incongruity",
+      "label": "Playful Affection",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] Text evidence: \"cold stone\" (literal tone: neutral). Visual evidence: bald man holding a large ice cream cone; stern/grimacing facial expression; prominent 'COLD STONE' logo overlaid. Cross-modal setup: the neutral brand label and logo are paired with a tough-looking figure clutching an indulgent dessert. [Pivot] Mechanism: multimodal_incongruity. Trigger rule: the harsh/tough facial display contradicts the pleasurable prop, forcing a nonliteral reading where apparent toughness reframes as teasing fondness. Minimal justification: the contradiction invites an ironic, affectionate stance. [Inference] Affection label: Playful Affection. Subject/target justification: the man’s possession and focus on the cone imply fondness for the ice cream. Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "affection_2616",
+      "text": "Having ran its course as a restaurant this location waits to be repurposed",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Twitter_pic_solved/7092.jpg"
+    },
+    "output": {
+      "subject": "speaker/uploader",
+      "target": "the restaurant/location",
+      "situation": "affection",
+      "mechanism": "figurative_semantics",
+      "label": "Longing",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\n- Text evidence: \"Having ran its course as a restaurant\" (literal tone: neutral descriptive).\n- Visual evidence: empty parking lot; faded sign reading \"RESTAURANT\" on a closed building; overcast cloudy sky; birds on power lines.\n- Cross-modal setup: the text states a factual end while the photo composes a desolate, memory-tinged scene.\n\n[Pivot]\n- Mechanism: figurative_semantics.\n- Trigger rule: the phrase uses a lifecycle metaphor (\"ran its course\") and the image supplies concrete, nostalgic source cues that map the building to a former lived-in place.\n- Minimal justification: together they recode a pragmatic notice as a metaphorical loss.\n\n[Inference]\n- Affection label: Longing.\n- Subject/target justification: the speaker/uploader is implied to feel nostalgic longing toward the restaurant/location.\n- Domain/Culture usage: Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "affection_2046",
+      "text": "mary magdalene 18x24 oil in panel",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Facebook_pic_solved/5110.jpg"
+    },
+    "output": {
+      "subject": "viewer",
+      "target": "Mary Magdalene (painting)",
+      "situation": "affection",
+      "mechanism": "figurative_semantics",
+      "label": "Warmth",
+      "domain": "Religious Art",
+      "culture": "Christian Culture",
+      "rationale": "[Anchor]\nText evidence: \"mary magdalene 18x24\" (neutral tone). Visual evidence: lace veil obscuring the eyes; soft, closed lips; warm brown hair and intimate cropped neckline. Cross-modal setup: the title names a sacred figure while the image gives an intimate, veiled close-up.\n[Pivot]\nMechanism: figurative_semantics. Trigger rule: the visual motifs (veil, softened mouth, close crop) function as metaphoric signals of humility/tenderness that map onto affectionate devotion. Minimal justification: naming the figure directs that metaphorical reading toward Mary Magdalene.\n[Inference]\nAffection label: Warmth. The viewer perceives tenderness directed at the depiction of Mary Magdalene. Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "affection_1308",
+      "text": "some things are better cheered than said.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/1/98651.jpg"
+    },
+    "output": {
+      "subject": "two people",
+      "target": "each other",
+      "situation": "affection",
+      "mechanism": "figurative_semantics",
+      "label": "Warmth",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\n- Text evidence: \"some things are better cheered than said.\" literal tone: positive.\n- Visual evidence: two hands holding beer bottles; bottles touching in a toast; bar interior visible; \"Lite\" labels on bottles.\n- Cross-modal setup: The slogan and photo pair a celebratory action (cheering) with the idea of conveying feelings nonverbally.\n\n[Pivot]\n- Mechanism: figurative_semantics.\n- Trigger rule: The word \"cheered\" is used metaphorically and the image shows a toast action, mapping the source domain (cheering/toast) onto the target domain (affection/warmth).\n- Minimal justification: Together they present nonverbal celebration as the vehicle for an affectionate sentiment.\n\n[Inference]\n- Affection label: Warmth.\n- Subject/target justification: The two people implicitly convey fondness toward each other through the shared toast.\n- Domain/Culture usage: Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "affection_1655",
+      "text": "reflections of pleasure.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/2/65192.jpg"
+    },
+    "output": {
+      "subject": "viewer",
+      "target": "Häagen-Dazs tiramisu ice cream",
+      "situation": "affection",
+      "mechanism": "figurative_semantics",
+      "label": "Longing",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\nText evidence: \"reflections of pleasure.\" (literal tone: positive). Visual evidence: large tiramisu-like ice cream cylinder on a glossy reflective surface; visible Häagen-Dazs tub and a slice of tiramisu; warm cocoa-dusted top and brown background. Cross-modal setup: the slogan names pleasure while the image literalizes a reflected, idealized dessert.\n[Pivot]\nMechanism: figurative_semantics. Trigger rule: the visual reflection serves as a source→target metaphor mapping (reflection → remembered/desired pleasure). Minimal justification: the text's metaphor is realized by the mirrored product, producing an implied emotional pull rather than explicit wording.\n[Inference]\nAffection label: Longing. The scene implies the viewer longs for the Häagen-Dazs tiramisu ice cream. Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "affection_2665",
+      "text": "Handsome Devil",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Twitter_pic_solved/7745.jpg"
+    },
+    "output": {
+      "subject": "speaker/uploader",
+      "target": "the depicted man",
+      "situation": "affection",
+      "mechanism": "multimodal_incongruity",
+      "label": "Playful Affection",
+      "domain": "Online & Social Media",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\n- Text evidence: \"Handsome Devil\" (positive tone).\n- Visual evidence: line drawing of a mustached man in an apron holding a cleaver; a dark shadow with horns and a trident behind him; an arrow/arrow-tail motif at left.\n- Cross-modal setup: the caption flatly compliments the figure while the image foregrounds devilish symbolism.\n[Pivot]\n- Mechanism: multimodal_incongruity.\n- Trigger rule: the positive epithet conflicts with ominous/devilish visuals, cancelling a literal negative reading.\n- Minimal justification: the contradiction forces a teasing, non-literal interpretation of praise.\n[Inference]\n- Affection label: Playful Affection.\n- Subject/target justification: the speaker/uploader expresses teasing admiration toward the depicted man.\n- Domain/Culture usage: Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "affection_2678",
+      "text": "middlesexhospct Kelly Birkenruth",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Twitter_pic_solved/7905.jpg"
+    },
+    "output": {
+      "subject": "poster",
+      "target": "the depicted women",
+      "situation": "affection",
+      "mechanism": "figurative_semantics",
+      "label": "Protectiveness",
+      "domain": "Online & Social Media",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\n- Text evidence: \"middlesexhospct Kelly Birkenruth\" (neutral tone).\n- Visual evidence: two young women standing back-to-back; matching pink shirts and denim shorts; bracelets on both wrists; one faces forward while the other looks away.\n- Cross-modal setup: The text is a neutral credit/tag while the image shows a composed physical connection suggesting mutual support.\n\n[Pivot]\n- Mechanism: figurative_semantics.\n- Trigger rule: The back-to-back pose functions as a source→target metaphor for support/protection, and the named credit frames the post as appreciative, linking image metaphor to affectionate intent.\n- Minimal justification: The composition uses physical contact as a metaphor for emotional guarding; the credit signals valuing that bond.\n\n[Inference]\n- Affection label: Protectiveness.\n- Subject/target justification: The poster (by crediting the artist) expresses protective fondness toward the depicted women.\n- Domain/Culture usage: Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "attitude_0917",
+      "text": "protect this house.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/1/152781.jpg"
+    },
+    "output": {
+      "subject": "the advertiser (Under Armour)",
+      "target": "viewer/athlete",
+      "situation": "attitude",
+      "mechanism": "dominant_affiliation",
+      "label": "Supportive",
+      "domain": "Commercial Advertising",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\nText evidence: \"protect this house.\" (literal tone: neutral). Visual evidence: male athlete in red shirt doing intense rope exercises; three-panel sequence showing exertion and focus; Under Armour logo visible. Cross-modal setup: The short imperative slogan is placed over images of strenuous training, linking the verbal command to athletic effort.\n\n[Pivot]\nMechanism: dominant_affiliation. Trigger rule: The imperative wording combined with dominant athletic imagery positions the advertiser above the audience and grants in-group membership while directing action; this matches Benevolent Control. Minimal justification: the brand speaks from an authoritative, protective stance that asks the viewer/athlete to act on behalf of the 'house'.\n\n[Inference]\nAttitude label: Supportive. Subject/target justification: The advertiser expresses a top-down protective/supportive stance toward the viewer/athlete. Domain/Culture: As a commercial ad, this reads as a marketing call-to-action to build team loyalty."
+    }
+  },
+  {
+    "input": {
+      "id": "attitude_2288",
+      "text": "Paradise or the gutter You choose",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Twitter_pic_solved/8816.jpg"
+    },
+    "output": {
+      "subject": "speaker",
+      "target": "viewer/passerby",
+      "situation": "attitude",
+      "mechanism": "dominant_detachment",
+      "label": "Disapproving",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\nText evidence: \"Paradise or the gutter You choose\" (literal tone: negative). Visual evidence: street sign reading 'PARADISE' mounted on a low brick wall; metal drain/grate in the pavement directly below; a dim urban street corner. Cross-modal setup: the line forces a moral choice that mirrors the photo's literal juxtaposition of a 'PARADISE' sign above a gutter.\n[Pivot]\nMechanism: dominant_detachment. Trigger rule: the curt, judgmental wording ('You choose') places the speaker on a moral high ground and attributes responsibility/blame to the addressee, while the image literalizes the dichotomy; this activates Character Blaming as the interaction logic. Minimal justification: phrasing plus image together present a moral verdict rather than an open invitation.\n[Inference]\nAttitude label: Disapproving. The speaker (post author) directs this stance at the implied viewer/passerby as the one who must 'choose'. Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "attitude_2267",
+      "text": "Loved being 3rd banana with my fav rotten fruits today",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Twitter_pic_solved/8544.jpg"
+    },
+    "output": {
+      "subject": "post author",
+      "target": "friends (\"fav rotten fruits\")",
+      "situation": "attitude",
+      "mechanism": "submissive_alignment",
+      "label": "Appreciative",
+      "domain": "Friendship",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\nText evidence: \"Loved being 3rd banana with my fav\" (positive tone). Visual evidence: two young adults seated together on an outdoor swing bench; casual coats and scarves; one person looks toward the other while the other looks down. Cross-modal setup: the caption playfully claims a third‑wheel role while the photo shows a small paired grouping at surface level.\n[Pivot]\nMechanism: submissive_alignment. Trigger rule: the self-labeling as \"3rd banana\" lowers the speaker's social centrality (self-diminishment) and, paired with affectionate wording, yields deferential positioning; image pairing reinforces the off-center role. Sub-logic used: Self-Diminishment.\n[Inference]\nAttitude label: Appreciative. The post author expresses appreciation toward their friends while characterizing themselves as subsidiary. Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "attitude_1490",
+      "text": "",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/2/70672.jpg"
+    },
+    "output": {
+      "subject": "HSBC (advertiser)",
+      "target": "the photographed woman",
+      "situation": "attitude",
+      "mechanism": "dominant_detachment",
+      "label": "Dismissive",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\nText evidence: no main legible text; small white words on the red triangle (neutral tone). Visual evidence: black-and-white photo of a woman in a white dress with skirt billowing; a solid red triangular shape obscures her face; red border and HSBC logo at bottom right. Cross-modal setup: glamorous body imagery is presented while identity is visually obscured and the brand mark occupies the compositional focus.\n[Pivot]\nMechanism: dominant_detachment. Trigger rule: the image creates cross-modal tension—glamour contrasted with a face-obscuring corporate mark—producing emotional cutoff and erasure; sub-logic used: Invalidation. This visual act treats the person as expendable to the brand's message.\n[Inference]\nAttitude label: Dismissive. The advertiser (subject) positions itself above and effectively dismisses the photographed woman's individual identity (target). Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "attitude_0189",
+      "text": "",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/0/100790.jpg"
+    },
+    "output": {
+      "subject": "advertiser/brand",
+      "target": "audience's joints",
+      "situation": "attitude",
+      "mechanism": "dominant_affiliation",
+      "label": "Supportive",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\nText evidence: \"FREE YOUR JOINTS\" (positive). Visual evidence: a single human leg with two metal cuffs around thigh and calf linked by a short chain; isolated white background; a supplement jar at bottom-right. Cross-modal setup: the slogan and the shackled-leg image together make a metaphor linking joint restriction to a problem the product can remove.\n[Pivot]\nMechanism: dominant_affiliation. Trigger rule: the ad positions the brand as a liberating helper that will 'free' joints, asserting solution authority and control over the problem; this is Benevolent Control because care (freedom) is presented as action taken on behalf of the target.\n[Inference]\nAttitude label: Supportive. The advertiser/brand expresses a supportive, solution-offering stance toward the audience's joints. Domain signals this is promotional health messaging and frames the implied superiority as service-oriented rather than personal criticism."
+    }
+  },
+  {
+    "input": {
+      "id": "attitude_1828",
+      "text": "mara pineda this will be you in 100 years!",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Facebook_pic_solved/7833.jpg"
+    },
+    "output": {
+      "subject": "poster",
+      "target": "mara pineda",
+      "situation": "attitude",
+      "mechanism": "dominant_detachment",
+      "label": "Dismissive",
+      "domain": "Online & Social Media",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\nText evidence: \"this will be you in 100 years!\" (tone: negative/teasing). Visual evidence: elderly white-haired woman in a pink suit; performing arm-balance/handstand poses; outdoor courtyard/residential buildings visible. Cross-modal setup: the caption tags a named person and pairs that jab with photos of an elderly person, so image and text form a teasing prediction.\n\n[Pivot]\nMechanism: dominant_detachment. Trigger rule: the direct second-person prediction and public tag assert a superior, dismissive stance by turning the addressee into an object of ridicule, and the photo is used to belittle rather than empathize; this matches Invalidation (the target’s identity/stance is treated as unimportant). Minimal justification: short taunting caption plus mocking image creates a high-ground dismissal.\n\n[Inference]\nAttitude label: Dismissive. Subject/target justification: the poster (speaker) addresses \"mara pineda\", so the speaker holds a dismissive stance toward that addressee. Domain/Culture usage: Online & Social Media meme/tagging norms make this a public, teasing dismissal rather than a private remark."
+    }
+  },
+  {
+    "input": {
+      "id": "attitude_1833",
+      "text": "cooking as a metaphor for relationships...",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Facebook_pic_solved/7975.jpg"
+    },
+    "output": {
+      "subject": "the poster",
+      "target": "relationships",
+      "situation": "attitude",
+      "mechanism": "dominant_affiliation",
+      "label": "Dismissive",
+      "domain": "Education & Campus",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\nText evidence: \"cooking as a metaphor for relationships...\" (neutral tone). Visual evidence: woman wearing an apron in a kitchen, arms open in an explanatory gesture, plates and ingredients on the counter, commercial stove and vent hood visible. Cross-modal setup: the caption frames a metaphor while the photo shows an apparent instructor demonstrating cooking.\n[Pivot]\nMechanism: dominant_affiliation. Trigger rule: the metaphorical wording plus an instructive image creates a teacher–learner power frame, with the speaker positioned above the topic; sub-logic used: Talking Down. Minimal justification: the poster offers a lesson-like analogy while the image depicts authoritative instruction, implying superiority.\n[Inference]\nAttitude label: Dismissive. The poster (subject) projects a teaching stance toward relationships (target), implying they need instruction. Domain (Education & Campus) reinforces an instructional/high-ground reading; Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "attitude_1291",
+      "text": "53000 nonsmokers die every year from secondhand smoke.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/2/135322.jpg"
+    },
+    "output": {
+      "subject": "ad creator",
+      "target": "smoking / smokers",
+      "situation": "attitude",
+      "mechanism": "dominant_detachment",
+      "label": "Disapproving",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\nText evidence: \"53,000 nonsmokers die every year\" (neutral tone). Visual evidence: cigarette in an ashtray; a trail of smoke shaped like a skull; dark background with reflection. Cross-modal setup: the mortality statistic is paired with a skull-shaped smoke image that literalizes risk.\n[Pivot]\nMechanism: dominant_detachment. Trigger rule: the neutral, prosecutorial statistic combined with a death-symbol image asserts moral/high-ground judgment and attributes culpability to smoking; Character Blaming is used. This compresses the factual claim into a condemnatory stance.\n[Inference]\nAttitude label: Disapproving. The ad creator (subject) conveys disapproval toward smoking/smokers (target) by linking secondhand smoke to preventable deaths. Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "attitude_0950",
+      "text": "its ours.puwers.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/1/163961.jpg"
+    },
+    "output": {
+      "subject": "the advertiser",
+      "target": "consumers/viewers",
+      "situation": "attitude",
+      "mechanism": "dominant_affiliation",
+      "label": "Supportive",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\nText evidence: \"its ours puwers\" (literal tone: positive). Visual evidence: a hand holding a whisky glass; a landscape scene visible inside the liquid; a bottle of Puwers whisky on the right; dark, staged background. Cross-modal setup: the possessive text pairs with an image of the brand/hand physically holding a landscape-inside-glass, linking ownership language to visual control.\n[Pivot]\nMechanism: dominant_affiliation. Trigger rule: the inclusive-sounding phrase \"it's ours\" combined with the hand holding the scene projects the brand granting shared possession while visually occupying the active, controlling role—this matches Benevolent Control (brand-as-holder \"for you\"). Minimal justification: wording invites inclusion while the image shows the brand in control, implying offered closeness from above.\n[Inference]\nAttitude label: Supportive. The advertiser (subject) adopts a supportive, inclusive stance toward consumers (target) by rhetorically claiming shared ownership; Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "attitude_1134",
+      "text": "lee can change your image.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/1/86791.jpg"
+    },
+    "output": {
+      "subject": "Lee (brand)",
+      "target": "the viewer's image",
+      "situation": "attitude",
+      "mechanism": "dominant_affiliation",
+      "label": "Supportive",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\nText evidence: \"LEE CAN CHANGE YOUR IMAGE.\" (literal tone: positive/promotional). Visual evidence: a standing person wearing red trousers and a prominent belt, a large realistic lion head mask, arms crossed in an open field. Cross-modal setup: the text promises transformation while the image literally shows a transformed/altered human appearance.\n[Pivot]\nMechanism: dominant_affiliation. Trigger rule: the slogan grants Lee the power to alter a viewer's identity (power-positioning via wording) while the striking visual enacts that change; this matches Benevolent Control. Minimal justification: the brand speaks from an advantaged position offering to enact change for the viewer.\n[Inference]\nAttitude label: Supportive. The subject (Lee brand) expresses a willingness to change the viewer's image. Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "attitude_2061",
+      "text": "Sinceandasked Im listening towhile prepping the garden",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Twitter_pic_solved/4842.jpg"
+    },
+    "output": {
+      "subject": "the poster",
+      "target": "the person who asked",
+      "situation": "attitude",
+      "mechanism": "submissive_alignment",
+      "label": "Supportive",
+      "domain": "Online & Social Media",
+      "culture": "General Culture",
+      "rationale": "[Anchor]\n- Text evidence: \"Im listening towhile prepping the garden\" (neutral tone).\n- Visual evidence: selfie of adult male, thumb-up gesture, bare garden plot with pulled weeds on a tarp, backyard house and pergola in view.\n- Cross-modal setup: the text reports complying with a request while the image shows him doing the chore.\n\n[Pivot]\n- Mechanism: submissive_alignment. Trigger rule: the phrasing frames the speaker as doing something because they were \"asked,\" and the photo documents them accommodating that request while gardening, signaling Over-Accommodation. Minimal justification: statement of compliance plus accommodating action indicates yielding to the requester.\n\n[Inference]\n- Attitude label: Supportive. Subject/target justification: the poster expresses an accommodating, agreeable stance toward the person who asked by complying while prepping the garden. Domain/Culture provides no additional disambiguation."
+    }
+  },
+  {
+    "input": {
+      "id": "attitude_2104",
+      "text": "Saw a photo from a news story Added some bumper stickers Now its prophesy",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Twitter_pic_solved/5696.jpg"
+    },
+    "output": {
+      "subject": "uploader",
+      "target": "Trump-Pence campaign",
+      "situation": "attitude",
+      "mechanism": "dominant_detachment",
+      "label": "Contemptuous",
+      "domain": "Online & Social Media",
+      "culture": "American Culture",
+      "rationale": "[Anchor]\nText evidence: \"Added some bumper stickers Now its prophesy\" (neutral tone). Visual evidence: bald eagle trapped in a car's front bumper; two \"Trump/Pence\" bumper stickers on the vehicle's front; asphalt and car grille visible. Cross-modal setup: The caption says stickers were added to a news photo; the image shows those stickers placed on a photo of a trapped bald eagle.\n\n[Pivot]\nMechanism: dominant_detachment. Trigger rule: The uploader overlays political branding onto an image of a harmed national symbol, assigning moral blame to the political actors through visual juxtaposition; this uses Character Blaming as the operative sub-logic.\n\n[Inference]\nAttitude label: Contemptuous. The uploader (subject) directs contempt toward the Trump-Pence campaign (target) by implicating them in harm to the American symbol. American cultural context (bald eagle as national emblem) clarifies the political condemnation."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_1983",
+      "text": "boston overqualified.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/2/92392.jpg"
+    },
+    "output": {
+      "subject": "New Balance (advertiser)",
+      "target": "runners / consumers",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "motivate purchase via provocative superiority claim",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The ad pairs a dramatic close-up of a New Balance running shoe splashing through water with the bold headline \"BOSTON OVER-QUALIFIED,\" alongside the NB logo and small copy touting a limited-edition Boston shoe. [Pivot] The headline deliberately misapplies \"over-qualified\" to a city, converting a literal statement into a provocative boast about the product; the elite running imagery and scarcity cues turn bragging into an aspirational prompt rather than a factual claim. [Inference] The implicit intent is to provoke curiosity and desire and thereby drive purchases by claiming superior, race-ready performance."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_1050",
+      "text": "some machinery can never be replaced. think safe. because your safety is our number one priority.it comes before all our commercial objectives. if you have any concerns at all contact your direct manager. we are aiming for zero harm culture siemens.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/1/132601.jpg"
+    },
+    "output": {
+      "subject": "Siemens / employer",
+      "target": "employees / on-site workers",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "motivate safe behavior via shock-based provocation",
+      "domain": "Workplace",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The surface text explicitly promotes safety and asks employees to contact managers, while the image shows a graphic, severe leg injury next to a worker. [Pivot] The juxtaposition of a corporate assurance — “safety is our number one priority” — with a vivid, shocking injury implies the ad’s goal goes beyond information: it deliberately provokes an emotional response. [Inference] Thus the implicit intent is to trigger compliance with safety rules by shocking workers into safer behavior rather than only providing neutral guidance."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_0345",
+      "text": "do you have what it takes",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/0/124570.jpg"
+    },
+    "output": {
+      "subject": "Cobra Special Forces (recruiter/organization)",
+      "target": "viewer / potential recruit",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "motivate enlistment via challenge",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The poster pairs a bold rhetorical question \"DO YOU HAVE WHAT IT TAKES?\" with a prominent cobra emblem and a recruitment URL (CobraSpecialForces.com), creating a militaristic, branded visual. [Pivot] The surface question appears informational but, in this recruitment context, functions as a provocation and identity test rather than a genuine inquiry; the image and URL convert curiosity into a call to action. [Inference] The implicit intent is to spur self-selection and prompt enlistment by daring viewers to prove their capability — i.e., motivate enlistment via challenge."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_1164",
+      "text": "heyshirt ill meet you for lunch.a nice long lunch.a shirt like you deserve a martini.and a black and blue steak.a chocolate mousse .and brandy.and thenyou know whatshirtlets talk him into playing hookey.youve got a glint in your eyeshirt.and its a shame to waste that on an office.van heusen made you for me.they know me.snobbish enough to like a buttondown collar that rolls just that way.sexy enough to like a shirt that fits the way a man is built.and allgirl enough to fall in love all over again with the one man in the world who can handle white stripes on blue twill.in factshirt.lets start playing hookey right now.hmmmm.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/1/155871.jpg"
+    },
+    "output": {
+      "subject": "female speaker / advertiser",
+      "target": "man / shirt wearer",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "motivate skipping work for a romantic rendezvous",
+      "domain": "Intimate Relationships",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The ad text playfully addresses a \"shirt,\" promising lunch, martinis, chocolate mousse and explicitly urging \"let's start playing hookey,\" while the image foregrounds a man adjusting a Van Heusen shirt with a dreamy woman's face superimposed. [Pivot] Framing the appeal as praise for clothing masks a direct invitation and recasts shirking work as a tempting romantic choice; the product is used as a prop to justify and glamourize the action. [Inference] The implicit intent is to provoke the man to skip work for a romantic rendezvous (and tie that behavior to buying the featured shirt)."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_1105",
+      "text": "full dre am ahead.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/1/139151.jpg"
+    },
+    "output": {
+      "subject": "Sprite advertiser",
+      "target": "consumers/viewers",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "motivate purchase via aspirational framing",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The left panel shows a Sprite bottle overlaid with the slogan \"FULL DREAM AHEAD\" while the right panel depicts a graceful dancer; the two visuals pair product imagery with aspirational art. [Pivot] The surface reads like an inspirational statement rather than an explicit call to buy, concealing the commercial motive behind emotive imagery and ambiguous wording. [Inference] The hidden intent is to provoke viewers to associate the soda with aspiration and lifestyle, thereby motivating purchase through aspirational association."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_0965",
+      "text": "who needs fur to feel beautiful id rather go naked than wear fur.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/1/116211.jpg"
+    },
+    "output": {
+      "subject": "PETA (advertiser)",
+      "target": "people who buy or wear fur",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "motivate rejection of fur through provocative shock",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The billboard text declares \"I'd rather go naked than wear fur\" alongside a topless model, a rabbit image, and a PETA credit. [Pivot] The combination of nudity and a sympathetic animal is clearly designed to grab attention and create emotional contrast rather than present a factual argument; the visual shock and cuteness work together to provoke discussion and discomfort about fur. [Inference] The implicit intent is to use provocation to spur viewers to stop buying/wearing fur—deliberately shocking the public to motivate anti-fur behavior and public debate."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_0515",
+      "text": "lux liquid answers both your wishes for luxlovely hands and sparkling dishes",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/0/162200.jpg"
+    },
+    "output": {
+      "subject": "Lux (advertiser)",
+      "target": "household shoppers",
+      "situation": "intent",
+      "mechanism": "malicious_manipulation",
+      "label": "drive purchase by appealing to vanity and convenience",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The ad text explicitly promises Lux Liquid 'answers both your wishes for luxlovely hands and sparkling dishes' while the image shows a smiling woman holding the bottle beside a gleaming, foam-covered plate. [Pivot] The upbeat, caring surface frames the product as both beauty aid and household helper, glossing over the commercial aim and conflating personal attractiveness with cleaning efficiency. [Inference] The unstated intent is to persuade purchases by exploiting consumers' desires for simultaneous beauty and practicality—packaging sales pressure as helpful reassurance to trigger buying behavior."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_1161",
+      "text": "where does your rubbish go",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/1/154101.jpg"
+    },
+    "output": {
+      "subject": "public awareness campaign",
+      "target": "people who litter / general public",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "motivate people to stop littering",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The ad text asks \"Where does your rubbish go?\" while the photo shows a discarded wrapper being swept toward a storm drain and includes a Keep Australia Beautiful logo. [Pivot] The verbal question plus the visual pathway from litter to drain creates a provocative, illustrative link between a casual act and environmental harm, framing the issue as a public responsibility rather than neutral information. [Inference] The combined message is designed to provoke awareness and guilt to change behavior — motivate people to stop littering and dispose of rubbish properly."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_1546",
+      "text": "say it with pepsi.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/2/115742.jpg"
+    },
+    "output": {
+      "subject": "Pepsi (advertiser)",
+      "target": "consumers / general audience",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "encourage purchase by framing Pepsi as a tool for self-expression",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The ad's slogan 'say it with pepsi.' plus an image of three Pepsi bottles labeled with expressive emoji faces (laughing, grinning, cool) present the product as a stand-in for emotional expression. [Pivot] The phrasing avoids an explicit sales command and instead substitutes social communication — the bottles visually encode feelings, turning the brand into a playful communicative tool. [Inference] The implicit intent is to provoke consumers to act — to choose and purchase Pepsi as a means of social expression and identity signaling, motivating buying through playful, indirect persuasion."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_1613",
+      "text": "the world is calling",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/2/134872.jpg"
+    },
+    "output": {
+      "subject": "advertiser (American Tourister)",
+      "target": "potential travelers / consumers",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "motivate immediate travel and luggage purchase",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The image shows a woman briskly pulling a bright red suitcase while grabbing the hand of a formal British guard; the slogan \"THE WORLD IS CALLING\" and the American Tourister logo are prominent. [Pivot] The unexpected, playful tug of a stoic guard and the urgent phrasing create a minor incongruity that reframes travel as irresistibly immediate, using humor and urgency rather than explicit functional claims. [Inference] The advertiser's hidden intent is to provoke an immediate desire to travel and thereby motivate viewers to buy luggage now."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_0994",
+      "text": "for carefree country life. porsche.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/1/118971.jpg"
+    },
+    "output": {
+      "subject": "Porsche advertiser",
+      "target": "prospective rural/aspirational buyers",
+      "situation": "intent",
+      "mechanism": "malicious_manipulation",
+      "label": "exploit aspirational rural identity to prompt purchase",
+      "domain": "Advertising & Commerce",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The ad's surface text promises \"for carefree country life\" while the image pairs a hunting hat and scoped rifle with a Porsche car. The composition presents an idyllic rural leisure scene alongside the product. [Pivot] Cars cannot literally deliver that lifestyle; the juxtaposition uses cultural codes (hunting gear, rustic masculinity) to link ownership with identity and status rather than functional claims. [Inference] The implicit intent is to manipulate aspirational self-image—packaging the car as a gateway to that desirable rural identity to motivate purchase."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_1791",
+      "text": "",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/2/31962.jpg"
+    },
+    "output": {
+      "subject": "Converse / Jack Purcell advertiser",
+      "target": "potential customers / viewers",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "motivate purchase through positive association",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The ad replaces the model's lower face with the shoe's smiling sole, isolates a pair of Jack Purcell Converse shoes and brand name beneath a large white space; cozy interior cues and the smile shape dominate the visual. [Pivot] The playful visual substitution conflicts with literal product display— the image doesn't state features but creates an affective link between the shoe and personal happiness/identity. [Inference] Therefore the implicit intent is to provoke consumer action: to create a positive association that motivates purchase by disguising persuasion as creative imagery."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_1605",
+      "text": "",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/2/132942.jpg"
+    },
+    "output": {
+      "subject": "floor polish / cleaning product brand",
+      "target": "potential consumers / homeowners",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "motivate purchase by dramatizing product effectiveness",
+      "domain": "Commercial Advertising",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The image shows a woman gliding dramatically across an impossibly glossy bathroom floor with a bottle of cleaning product visible; no explicit text explains this, so the visual is the main communicator. [Pivot] The surreal, playful staging exaggerates the floor's shine and slipperiness to provoke a reaction—admiration, surprise, and desire for that result—rather than making a literal, testable claim. [Inference] Thus the ad's hidden intent is to provoke consumers into buying by overstating effectiveness, using dramatized imagery as a tool to motivate purchase."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_0829",
+      "text": "incaseofemergencyeatthisb0ook.landrover.ediblesurvivalguide.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/0/85760.jpg"
+    },
+    "output": {
+      "subject": "Land Rover (advertiser)",
+      "target": "potential customers / general public",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "provoke attention and motivate engagement by dramatizing survival utility",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The ad's surface reads \"IN CASE OF EMERGENCY: EAT THIS BOOK\" and shows a rugged, dirt-stained man actually consuming a pocket survival guide while pages display desert survival tips. [Pivot] The edible-book gimmick and staged ingestion create a deliberate, provocative visual that goes beyond literal instruction: the shocking act functions as a tool-like disguise to dramatize utility and trigger curiosity, not merely to inform. [Inference] The implicit intent is to provoke attention and drive consumer engagement—linking the Land Rover brand to practical preparedness through a startling, shareable demonstration."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_1236",
+      "text": "cingular.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/1/271.jpg"
+    },
+    "output": {
+      "subject": "Cingular advertiser",
+      "target": "potential customers / viewers",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "provoke curiosity to promote the brand",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The creative ad contains only the single word “cingular.”, a stylized tomato-splash forming the brand mark, and a small flip phone with no direct sales pitch. [Pivot] The imagery deliberately disguises the logo in an ambiguous, playful visual and omits explicit product claims, relying on surprise and aesthetic intrigue rather than literal information. [Inference] The implicit intent is to provoke curiosity and drive viewers to notice or investigate the brand—using creative misdirection to generate interest and engagement (benevolent_provocation)."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_0242",
+      "text": "its not who you know that counts.its whos paying the tab.erveza.mportao.live one cerveza at a time.cerveza.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/0/10120.jpg"
+    },
+    "output": {
+      "subject": "Sol beer advertiser/brand",
+      "target": "potential consumers/bars patrons",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "motivate purchase by framing buying as social capital",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The headline \"It's not who you know that counts. It's who's paying the tab,\" combined with a large, celebratory image of a Sol beer bottle and the tagline \"Live one cerveza at a time,\" frames paying for drinks as a source of social value. [Pivot] The visual emphasis on the product and upbeat design recasts the provocative line as a consumption prompt rather than literal advice, nudging viewers to equate buying the beer with gaining status. [Inference] The ad's hidden intent is to provoke purchase by suggesting buying Sol yields social recognition."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_2725",
+      "text": "D DnArcher",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Twitter_pic_solved/7406.jpg"
+    },
+    "output": {
+      "subject": "poster/author",
+      "target": "online readers or debate opponents",
+      "situation": "intent",
+      "mechanism": "expressive_aggression",
+      "label": "assert intellectual dominance via ornate metaphors",
+      "domain": "Online & Social Media",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The image shows a muscular, triumphant figure hoisting a large object labeled \"METAPHOR,\" visually framing metaphor as a show of strength; the brief text adds no literal request. [Pivot] In an online/social-media context this visual exaggeration reads as performative: the creator is not merely describing metaphor but presenting it as a weapon/trophy to display prowess. [Inference] The implicit communicative goal is to intimidate or one-up others by flaunting elaborate metaphors, i.e., to assert dominance indirectly through stylistic display."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_2698",
+      "text": "I bet its well tasty though especially that soggy section in the middle",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Twitter_pic_solved/6813.jpg"
+    },
+    "output": {
+      "subject": "commenter",
+      "target": "baker/photo poster",
+      "situation": "intent",
+      "mechanism": "expressive_aggression",
+      "label": "indirectly ridicule the baker",
+      "domain": "Online & Social Media",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The surface text frames a compliment ('I bet its well tasty though') but immediately flags 'that soggy section in the middle.' The image shows a dense cake with a recessed center that could plausibly be described as soggy. [Pivot] Combining praise with a pointed negative detail in a public social-media comment creates ironic contrast rather than sincere appraisal. [Inference] The commenter’s pragmatic aim is to criticize and mock the baker indirectly—venting disapproval and shaming the poster via sarcasm instead of direct confrontation."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_0961",
+      "text": "refresh your world.",
+      "image_url": "https://people.cs.pitt.edu/~mzhang/image_ads/1/115691.jpg"
+    },
+    "output": {
+      "subject": "Pepsi (advertiser)",
+      "target": "potential consumers/viewers",
+      "situation": "intent",
+      "mechanism": "benevolent_provocation",
+      "label": "stimulate purchase via lifestyle association",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The ad pairs the slogan \"refresh your world\" and the Pepsi logo with a triumphant, painted athlete and dynamic water imagery, creating vivid sensory and lifestyle cues rather than an explicit sales pitch. [Pivot] The surface imperative suggests refreshment, but the image emphasizes excitement, youth, and identity, shifting attention from product features to emotional association. [Inference] Together these elements covertly provoke desire and associate the brand with vitality, aiming to trigger consumption without directly asking viewers to buy."
+    }
+  },
+  {
+    "input": {
+      "id": "intent_2537",
+      "text": "Youll get a plate of dirt and youll like it",
+      "image_url": "https://raw.githubusercontent.com/DUTIR-YSQ/MultiMET/master/Twitter_pic_solved/3790.jpg"
+    },
+    "output": {
+      "subject": "speaker",
+      "target": "listener",
+      "situation": "intent",
+      "mechanism": "malicious_manipulation",
+      "label": "force compliance by reframing harm as desirable",
+      "domain": "Public & Service",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The text is a coercive imperative — \"You'll get a plate of dirt and you'll like it\" — while the image shows a dish that literally resembles dirt presented as a crafted, edible plate. [Pivot] Together they create a surface claim of enjoyment that masks an unpleasant imposition: an outcome framed as desirable despite being harmful or degrading. This cross-modal mismatch signals a tactic of packaging harm as pleasure to nudge acceptance. [Inference] The implicit intent is to compel the recipient to accept an unpleasant outcome by reframing it as enjoyable — coercing compliance through intimidation and positive spin."
+    }
+  }
+]
