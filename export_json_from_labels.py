@@ -86,6 +86,11 @@ def main() -> None:
     parser.add_argument("--input-csv", default=str(DEFAULT_CSV_PATH))
     parser.add_argument("--output-json", default=str(DEFAULT_JSON_PATH))
     parser.add_argument(
+        "--output-abandoned-json",
+        default="abandoned_records.json",
+        help="Output JSON file path for rows filtered by abandon/skipped.",
+    )
+    parser.add_argument(
         "--source-json",
         default=str(DEFAULT_SOURCE_JSON_PATH),
         help=(
@@ -108,6 +113,7 @@ def main() -> None:
 
     csv_path = Path(args.input_csv)
     out_path = Path(args.output_json)
+    abandoned_json_path = Path(args.output_abandoned_json)
     source_json_path = Path(args.source_json)
     base_image_url = args.base_image_url
 
@@ -126,12 +132,23 @@ def main() -> None:
             by_filename[fname] = item
 
     result: List[Dict[str, Any]] = []
+    abandoned_rows: List[Dict[str, Any]] = []
     for _, row in df.iterrows():
         rec = row.to_dict()
         abandoned = str(rec.get("abandon", "")).strip().lower() in {"true", "1", "yes"}
         skipped = str(rec.get("skipped", "")).strip().lower() in {"true", "1", "yes"}
         filtered_out = abandoned or skipped
         if filtered_out and not args.include_skipped:
+            abandoned_rows.append({
+                "id": _safe_text(rec.get("id", "")).strip(),
+                "filename": _safe_text(rec.get("filename", "")).strip(),
+                "abandon": abandoned,
+                "skipped": skipped,
+                "situation": _safe_text(rec.get("situation", "")).strip(),
+                "label_Affection": _safe_text(rec.get("label_Affection", "")).strip(),
+                "label_Intent": _safe_text(rec.get("label_Intent", "")).strip(),
+                "label_Attitude": _safe_text(rec.get("label_Attitude", "")).strip(),
+            })
             continue
 
         filename = _safe_text(rec.get("filename", "")).strip()
@@ -166,8 +183,14 @@ def main() -> None:
         result.append(item)
 
     out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    abandoned_json_path.write_text(
+        json.dumps(abandoned_rows, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
     print(f"Exported: {len(result)}")
     print(f"Output JSON: {out_path}")
+    print(f"Filtered rows: {len(abandoned_rows)}")
+    print(f"Filtered rows JSON: {abandoned_json_path}")
 
 
 if __name__ == "__main__":

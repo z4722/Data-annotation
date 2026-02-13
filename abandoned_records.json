@@ -1,0 +1,22 @@
+[
+  {
+    "id": "intent_6753",
+    "filename": "intent_6753.png",
+    "abandon": true,
+    "skipped": false,
+    "situation": "Intent",
+    "label_Affection": "NULL",
+    "label_Intent": "guilt trip him",
+    "label_Attitude": "NULL"
+  },
+  {
+    "id": "affection_10050",
+    "filename": "affection_10050.png",
+    "abandon": true,
+    "skipped": false,
+    "situation": "Affection",
+    "label_Affection": "Happy",
+    "label_Intent": "NULL",
+    "label_Attitude": "NULL"
+  }
+]
