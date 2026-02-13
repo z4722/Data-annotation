@@ -201,6 +201,8 @@ def _rerun() -> None:
 def _init_session_state() -> None:
     defaults = {
         "current_index": 0,
+        "is_locked": False,
+        "abandon_selected": False,
         "id": "",
         "input_text": "",  # ✅ NEW
         "subject": "",
@@ -232,6 +234,7 @@ def _init_session_state() -> None:
 def _load_record_into_inputs(record: Optional[Dict[str, Any]]) -> None:
     """Load saved record into input fields (or clear them)."""
     if not record:
+        st.session_state.abandon_selected = False
         st.session_state.id = ""
         st.session_state.input_text = ""
         st.session_state.subject = ""
@@ -246,6 +249,7 @@ def _load_record_into_inputs(record: Optional[Dict[str, Any]]) -> None:
         st.session_state.rationale = ""
         return
 
+    st.session_state.abandon_selected = bool(record.get("skipped", False))
     st.session_state.id = _safe_text(record.get("id", ""))
     st.session_state.input_text = _safe_text(record.get("input_text", ""))
     st.session_state.subject = _safe_text(record.get("subject", ""))
@@ -327,8 +331,13 @@ header[data-testid="stHeader"] { display: none; }
 /* Adjust top padding to prevent header overlap */
 .block-container { padding-top: 0.2rem; padding-bottom: 0.5rem; }
 div[data-testid="stVerticalBlock"] { gap: 0.2rem; }
-/* Make primary button more prominent */
-div[data-testid="stButton"] button[kind="primary"] { font-weight: 700; }
+/* Active danger-style action button (Abandon ON). */
+div[data-testid="stButton"] button[kind="primary"] {
+    font-weight: 700;
+    background-color: #c62828;
+    border-color: #c62828;
+    color: #ffffff;
+}
 /* Compact metadata styling */
 .meta { color: rgba(49, 51, 63, 0.7); font-size: 0.85rem; margin-top: 0.2rem; }
 /* Reduce spacing in form elements */
@@ -429,6 +438,7 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
     _clear_bad_widget_state(["input_text", "subject", "target", "label_Intent", "rationale"])
 
     _init_session_state()
+    is_locked = bool(st.session_state.is_locked)
 
     labels_df = _load_labels_df()
     by_name = _labels_index(labels_df)
@@ -537,17 +547,17 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
         with input_col:
             st.markdown('<div class="input-panel-anchor"></div>', unsafe_allow_html=True)
             # ✅ Requirement: place Input in the red-box area (title + box like Subject)
-            st.text_input("ID", key="id", label_visibility="collapsed")
-            st.text_area("Input", key="input_text")
+            st.text_input("ID", key="id", label_visibility="collapsed", disabled=is_locked)
+            st.text_area("Input", key="input_text", disabled=is_locked)
 
         st.divider()
         lower_left_col, lower_right_col = st.columns([0.42, 0.58], gap="medium")
         with lower_left_col:
-            st.selectbox("Mechanism", MECHANISM_OPTIONS, key="mechanism")
-            st.text_input("Domain", key="domain")
-            st.text_input("Culture", key="culture")
+            st.selectbox("Mechanism", MECHANISM_OPTIONS, key="mechanism", disabled=is_locked)
+            st.text_input("Domain", key="domain", disabled=is_locked)
+            st.text_input("Culture", key="culture", disabled=is_locked)
         with lower_right_col:
-            st.text_area("Rationale", key="rationale", height=120)
+            st.text_area("Rationale", key="rationale", height=120, disabled=is_locked)
 
     # =========================
     # Right Column: Progress + Navigation + Form
@@ -563,24 +573,37 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
             with nav_cols[0]:
                 prev_clicked = st.button("Previous", use_container_width=True)
             with nav_cols[1]:
-                accept_clicked = st.button("Accept", use_container_width=True, type="primary")
+                accept_clicked = st.button("Accept", use_container_width=True)
             with nav_cols[2]:
                 pending_clicked = st.button("Pending", use_container_width=True)
             with nav_cols[3]:
-                abandon_clicked = st.button("Abandon", use_container_width=True)
+                abandon_clicked = st.button(
+                    "Abandon",
+                    use_container_width=True,
+                    type="primary" if st.session_state.abandon_selected else "secondary",
+                )
+            lock_toggle_clicked = st.button(
+                "Unlock Edit" if st.session_state.is_locked else "Lock Edit",
+                use_container_width=True,
+                type="primary" if not st.session_state.is_locked else "secondary",
+            )
+        st.caption(
+            f"Edit: {'Locked' if st.session_state.is_locked else 'Unlocked'} | "
+            f"Abandon: {'ON' if st.session_state.abandon_selected else 'OFF'}"
+        )
 
         st.divider()
 
         with st.container():
             st.markdown("**Annotation Form**")
 
-            st.text_input("Subject", key="subject")
-            st.text_input("Target", key="target")
-            st.selectbox("Situation", SITUATION_OPTIONS, key="situation")
+            st.text_input("Subject", key="subject", disabled=is_locked)
+            st.text_input("Target", key="target", disabled=is_locked)
+            st.selectbox("Situation", SITUATION_OPTIONS, key="situation", disabled=is_locked)
 
-            st.selectbox("Label: Affection", Affection_OPTIONS, key="label_Affection")
-            st.text_input("Label: Intent", key="label_Intent")
-            st.selectbox("Label: Attitude", ATTITUDE_OPTIONS, key="label_Attitude")
+            st.selectbox("Label: Affection", Affection_OPTIONS, key="label_Affection", disabled=is_locked)
+            st.text_input("Label: Intent", key="label_Intent", disabled=is_locked)
+            st.selectbox("Label: Attitude", ATTITUDE_OPTIONS, key="label_Attitude", disabled=is_locked)
 
         st.caption(f"Current: `{current_path.name}`")
 
@@ -594,30 +617,34 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
     def _next_index(from_idx: int) -> int:
         return min(from_idx + 1, total - 1)
 
+    if lock_toggle_clicked:
+        st.session_state.is_locked = not bool(st.session_state.is_locked)
+        _rerun()
+
     if prev_clicked:
         _go(current_index - 1)
 
     if abandon_clicked:
+        st.session_state.abandon_selected = not bool(st.session_state.abandon_selected)
         record = {
             "filename": current_path.name,
-            "id": "",
-            "input_text": "",
-            "subject": "",
-            "target": "",
-            "situation": "",
-            "mechanism": "",
-            "domain": "",
-            "culture": "",
-            "label_Affection": "",
-            "label_Intent": "",
-            "label_Attitude": "",
-            "rationale": "",
-            "skipped": True,
+            "id": st.session_state.id,
+            "input_text": st.session_state.input_text,
+            "subject": st.session_state.subject,
+            "target": st.session_state.target,
+            "situation": st.session_state.situation,
+            "mechanism": st.session_state.mechanism,
+            "domain": st.session_state.domain,
+            "culture": st.session_state.culture,
+            "label_Affection": st.session_state.label_Affection,
+            "label_Intent": st.session_state.label_Intent,
+            "label_Attitude": st.session_state.label_Attitude,
+            "rationale": st.session_state.rationale,
+            "skipped": bool(st.session_state.abandon_selected),
         }
         labels_df = _upsert_label(labels_df, record)
         _save_labels_df(labels_df)
-        st.session_state.last_loaded_filename = ""  # Force reload on next file
-        _go(_next_index(current_index))
+        _rerun()
 
     if pending_clicked:
         _go(_next_index(current_index))
@@ -637,7 +664,7 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
             "label_Intent": st.session_state.label_Intent,
             "label_Attitude": st.session_state.label_Attitude,
             "rationale": st.session_state.rationale,
-            "skipped": False,
+            "skipped": bool(st.session_state.abandon_selected),
         }
         labels_df = _upsert_label(labels_df, record)
         _save_labels_df(labels_df)
