@@ -137,20 +137,6 @@ def main() -> None:
         rec = row.to_dict()
         abandoned = str(rec.get("abandon", "")).strip().lower() in {"true", "1", "yes"}
         skipped = str(rec.get("skipped", "")).strip().lower() in {"true", "1", "yes"}
-        filtered_out = abandoned or skipped
-        if filtered_out and not args.include_skipped:
-            abandoned_rows.append({
-                "id": _safe_text(rec.get("id", "")).strip(),
-                "filename": _safe_text(rec.get("filename", "")).strip(),
-                "abandon": abandoned,
-                "skipped": skipped,
-                "situation": _safe_text(rec.get("situation", "")).strip(),
-                "label_Affection": _safe_text(rec.get("label_Affection", "")).strip(),
-                "label_Intent": _safe_text(rec.get("label_Intent", "")).strip(),
-                "label_Attitude": _safe_text(rec.get("label_Attitude", "")).strip(),
-            })
-            continue
-
         filename = _safe_text(rec.get("filename", "")).strip()
         sid = _safe_text(rec.get("id", "")).strip()
         source_item = by_id.get(sid) or by_filename.get(filename)
@@ -179,6 +165,12 @@ def main() -> None:
         output_obj["domain"] = _safe_text(rec.get("domain", "")).strip()
         output_obj["culture"] = _safe_text(rec.get("culture", "")).strip()
         output_obj["rationale"] = _safe_text(rec.get("rationale", "")).strip()
+
+        filtered_out = abandoned or skipped
+        if filtered_out:
+            abandoned_rows.append(item)
+            if not args.include_skipped:
+                continue
 
         result.append(item)
 

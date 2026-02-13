@@ -1,22 +1,38 @@
 [
   {
-    "id": "intent_6753",
-    "filename": "intent_6753.png",
-    "abandon": true,
-    "skipped": false,
-    "situation": "Intent",
-    "label_Affection": "NULL",
-    "label_Intent": "guilt trip him",
-    "label_Attitude": "NULL"
+    "input": {
+      "id": "intent_6753",
+      "text": "my husband does everything i ask but i have to ask",
+      "path": "/hpctmp/e1561245/Data/img/HatefulMemes/img/38942.png",
+      "url": "https://huggingface.co/datasets/yesbobo/implicit/resolve/main/images/intent/intent_6753.png"
+    },
+    "output": {
+      "subject": "wife",
+      "target": "husband",
+      "situation": "intent",
+      "mechanism": "expressive_aggression",
+      "label": "guilt trip him",
+      "domain": "Intimate Relationships",
+      "culture": "General Culture",
+      "rationale": "[Anchor] The caption explicitly notes the husband complies only after being asked while the photo shows a distressed, tearful woman—a plaintive personal complaint framed as a meme. [Pivot] That cross-modal pairing creates a surface–deep mismatch: rather than neutrally reporting, the public, emotional presentation functions as an indirect reproach aimed beyond literal content. [Inference] The speaker’s likely hidden goal is to vent and indirectly coerce change by provoking guilt or social shame in the husband rather than confronting him directly."
+    }
   },
   {
-    "id": "affection_10050",
-    "filename": "affection_10050.png",
-    "abandon": true,
-    "skipped": false,
-    "situation": "Affection",
-    "label_Affection": "Happy",
-    "label_Intent": "NULL",
-    "label_Attitude": "NULL"
+    "input": {
+      "id": "affection_10050",
+      "text": "the guy above me fingers his cat",
+      "path": "/hpctmp/e1561245/Data/img/HatefulMemes/img/89073.png",
+      "url": "https://huggingface.co/datasets/yesbobo/implicit/resolve/main/images/affection/affection_10050.png"
+    },
+    "output": {
+      "subject": "man in image",
+      "target": "his cat",
+      "situation": "affection",
+      "mechanism": "multimodal_incongruity",
+      "label": "Happy",
+      "domain": "Online & Social Media",
+      "culture": "General Culture",
+      "rationale": "[Anchor] Text evidence: \"the guy above me fingers his cat\" (literal tone: negative/explicit). Visual evidence: man smiling broadly; head tilted back; both index fingers pointed upward; wearing a casual hoodie. Cross-modal setup: the caption makes a crude claim while the photo shows a joyful, self-referential pose. [Pivot] Mechanism: multimodal_incongruity. Trigger rule: the upbeat, proud image cancels a literal offense reading and reframes the caption as teasing humor. Minimal justification: the modalities contradict, forcing a non-literal, playful interpretation. [Inference] Emotion label: Happy. Subject/target justification: the man in the photo appears amused (subject) about the stated act/‘his cat’ (target). Domain/Culture usage: Online & Social Media/General Culture meme conventions signal joking/teasing, supporting a playful affectionate read."
+    }
   }
 ]
