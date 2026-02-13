@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import base64
+import mimetypes
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 import pandas as pd
 import streamlit as st
@@ -13,6 +15,8 @@ from PIL import Image
 # =========================
 MEDIA_DIR = Path("images")  # Directory containing images and videos
 LABELS_CSV = Path("video_labels.csv")
+PREVIEW_WIDTH = 280
+PREVIEW_HEIGHT = 220
 
 SITUATION_OPTIONS = ["Affection", "Intent", "Attitude"]
 MECHANISM_OPTIONS = [
@@ -112,7 +116,7 @@ def _clear_bad_widget_state(keys: List[str]) -> None:
             del st.session_state[k]
 
 
-def _supported_media_files() -> List[Path]:
+def _supported_media_files(allowed_filenames: Optional[Set[str]] = None) -> List[Path]:
     """Load supported image and video files."""
     if not MEDIA_DIR.exists():
         return []
@@ -120,6 +124,8 @@ def _supported_media_files() -> List[Path]:
     video_ext = {".mp4", ".mov", ".avi", ".mkv", ".webm"}
     supported_ext = image_ext | video_ext
     files = [p for p in MEDIA_DIR.iterdir() if p.is_file() and p.suffix.lower() in supported_ext]
+    if allowed_filenames:
+        files = [p for p in files if p.name in allowed_filenames]
     return sorted(files, key=lambda p: p.name.lower())
 
 
@@ -269,12 +275,52 @@ def _get_image_meta(image_path: Path) -> Tuple[int, int]:
         return 0, 0
 
 
+def _render_media_preview(file_path: Path, frame_width: int = PREVIEW_WIDTH, frame_height: int = PREVIEW_HEIGHT) -> None:
+    """Render image/video in one shared fixed-size preview frame."""
+    try:
+        raw = file_path.read_bytes()
+    except Exception:
+        st.warning(f"Failed to read media: {file_path.name}")
+        return
+
+    mime = mimetypes.guess_type(file_path.name)[0]
+    if _is_image(file_path):
+        mime = mime or "image/jpeg"
+        media_html = (
+            f'<img class="media-preview-element" src="data:{mime};base64,'
+            f'{base64.b64encode(raw).decode("ascii")}" alt="{file_path.name}" />'
+        )
+    elif _is_video(file_path):
+        mime = mime or "video/mp4"
+        media_html = (
+            '<video class="media-preview-element" controls preload="metadata">'
+            f'<source src="data:{mime};base64,{base64.b64encode(raw).decode("ascii")}" type="{mime}" />'
+            "</video>"
+        )
+    else:
+        st.warning(f"Unsupported media type: {file_path.name}")
+        return
+
+    st.markdown(
+        f"""
+        <div class="media-preview-frame" style="width:{frame_width}px;max-width:{frame_width}px;height:{frame_height}px;flex:0 0 {frame_width}px;">
+            {media_html}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 def main() -> None:
     st.set_page_config(page_title="Media Annotation Tool", layout="wide")
 
     st.markdown(
         """
 <style>
+:root {
+    --preview-w: 280px;
+    --preview-h: 220px;
+}
 /* Hide Streamlit top toolbar/header (Deploy/menu row) */
 header[data-testid="stHeader"] { display: none; }
 
@@ -289,9 +335,63 @@ div[data-testid="stButton"] button[kind="primary"] { font-weight: 700; }
 .stTextInput, .stSelectbox, .stTextArea { margin-bottom: 0.15rem; }
 /* Compact subheader */
 h3 { margin-top: 0.3rem; margin-bottom: 0.3rem; }
-/* Limit media size */
-.stImage img { max-width: 100%; max-height: 420px; object-fit: contain; }
-.stVideo video { max-width: 100%; max-height: 420px; height: auto; }
+/* Shared fixed preview frame for image/video */
+.media-preview-frame {
+    width: var(--preview-w);
+    max-width: var(--preview-w);
+    min-width: var(--preview-w);
+    height: var(--preview-h);
+    max-height: var(--preview-h);
+    flex: 0 0 var(--preview-w);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0f172a;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+.media-preview-element {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: #0f172a;
+}
+/* Keep preview and ID/Input on the same row with equal height */
+div[data-testid="stHorizontalBlock"]:has(.preview-col-anchor):has(.input-panel-anchor) {
+    align-items: stretch;
+}
+div[data-testid="column"]:has(.input-panel-anchor) > div[data-testid="stVerticalBlock"] {
+    height: 220px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+div[data-testid="column"]:has(.input-panel-anchor) div[data-testid="stTextInput"] {
+    flex: 0 0 auto;
+}
+div[data-testid="column"]:has(.input-panel-anchor) div[data-testid="stTextArea"] {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+div[data-testid="column"]:has(.input-panel-anchor) div[data-testid="stTextArea"] > div {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+div[data-testid="column"]:has(.input-panel-anchor) div[data-testid="stTextArea"] textarea {
+    flex: 1 1 auto;
+    min-height: 0 !important;
+    height: 100% !important;
+    overflow: auto !important;
+    resize: none;
+}
 /* Compact right panel elements - maximize space efficiency */
 div[data-testid="column"]:last-child .stSubheader { font-size: 1rem; margin-bottom: 0.2rem; margin-top: 0.2rem; }
 div[data-testid="column"]:last-child .stButton button {
@@ -330,17 +430,21 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
 
     _init_session_state()
 
-    media_files = _supported_media_files()
+    labels_df = _load_labels_df()
+    by_name = _labels_index(labels_df)
+    allowed_filenames = {
+        str(v).strip()
+        for v in labels_df.get("filename", pd.Series(dtype=str)).tolist()
+        if str(v).strip()
+    }
+
+    media_files = _supported_media_files(allowed_filenames if allowed_filenames else None)
     total = len(media_files)
     if total == 0:
         st.warning(
-            "No media files found. Please create an `images/` directory and add images (jpg/png/webp) "
-            "or videos (mp4/mov/avi/mkv/webm)."
+            "No media files found for current labels. Please run import to download files into `images/`."
         )
         st.stop()
-
-    labels_df = _load_labels_df()
-    by_name = _labels_index(labels_df)
 
     # Calculate progress: considered done if not skipped and at least one field is filled
     def _is_done(rec: Dict[str, Any]) -> bool:
@@ -401,9 +505,10 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
         media_col, input_col = st.columns([0.48, 0.52], gap="medium")
 
         with media_col:
+            st.markdown('<div class="preview-col-anchor"></div>', unsafe_allow_html=True)
             # Display media based on file type
             if _is_image(current_path):
-                st.image(str(current_path), width="stretch")
+                _render_media_preview(current_path, frame_width=PREVIEW_WIDTH, frame_height=PREVIEW_HEIGHT)
                 w, h = _get_image_meta(current_path)
                 if w > 0 and h > 0:
                     st.markdown(
@@ -417,7 +522,7 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
                         unsafe_allow_html=True,
                     )
             elif _is_video(current_path):
-                st.video(str(current_path))
+                _render_media_preview(current_path, frame_width=PREVIEW_WIDTH, frame_height=PREVIEW_HEIGHT)
                 st.markdown(
                     f'<div class="meta">File: <b>{current_path.name}</b> | Type: <b>Video</b> | '
                     f'Index: <b>{current_index + 1}/{total}</b></div>',
@@ -430,15 +535,19 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
                 )
 
         with input_col:
+            st.markdown('<div class="input-panel-anchor"></div>', unsafe_allow_html=True)
             # ✅ Requirement: place Input in the red-box area (title + box like Subject)
             st.text_input("ID", key="id", label_visibility="collapsed")
-            st.text_area("Input", key="input_text", height=95)
+            st.text_area("Input", key="input_text")
 
         st.divider()
-        st.selectbox("Mechanism", MECHANISM_OPTIONS, key="mechanism")
-        st.text_input("Domain", key="domain")
-        st.text_input("Culture", key="culture")
-        st.text_area("Rationale", key="rationale", height=50)
+        lower_left_col, lower_right_col = st.columns([0.42, 0.58], gap="medium")
+        with lower_left_col:
+            st.selectbox("Mechanism", MECHANISM_OPTIONS, key="mechanism")
+            st.text_input("Domain", key="domain")
+            st.text_input("Culture", key="culture")
+        with lower_right_col:
+            st.text_area("Rationale", key="rationale", height=120)
 
     # =========================
     # Right Column: Progress + Navigation + Form

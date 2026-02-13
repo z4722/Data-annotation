@@ -28,7 +28,7 @@ CSV_COLUMNS = [
 ]
 
 # Edit these two paths directly when you want to change default import target.
-DEFAULT_INPUT_PATH = Path(r"C:\Users\xwhhh\Desktop\data_deal\Data")
+DEFAULT_INPUT_PATH = Path(r"C:\Users\xwhhh\Desktop\data_deal\Data\prelabel_slim_mm_seed42.json")
 DEFAULT_OUTPUT_PATH = Path("video_labels.csv")
 DEFAULT_MEDIA_DIR = Path("images")
 
@@ -66,12 +66,21 @@ def _norm_affection_label(value: str) -> str:
     return mapping.get(v, value)
 
 
+def _media_url_from_input(input_obj: Dict[str, Any]) -> str:
+    # Prefer explicit HF-style "url", then backward-compatible "image_url".
+    for key in ("url", "image_url"):
+        value = _safe_text(input_obj.get(key, "")).strip()
+        if value:
+            return value
+    return ""
+
+
 def _filename_from_input(input_obj: Dict[str, Any]) -> str:
     for key in ("filename", "file_name", "image_file", "video_file"):
         if input_obj.get(key):
             return _safe_text(input_obj[key]).strip()
 
-    image_url = _safe_text(input_obj.get("image_url", "")).strip()
+    image_url = _media_url_from_input(input_obj)
     if image_url:
         parsed = urlparse(image_url)
         name = Path(parsed.path).name
@@ -180,7 +189,7 @@ def _to_record(obj: Dict[str, Any]) -> Dict[str, Any]:
 
 def _image_url_from_obj(obj: Dict[str, Any]) -> str:
     input_obj = obj.get("input", {}) if isinstance(obj.get("input"), dict) else {}
-    return _safe_text(input_obj.get("image_url", "")).strip()
+    return _media_url_from_input(input_obj)
 
 
 def _download_media(image_url: str, filename: str, media_dir: Path) -> bool:
