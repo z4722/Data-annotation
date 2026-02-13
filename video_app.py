@@ -62,6 +62,7 @@ CSV_COLUMNS = [
     "label_Attitude",
     "rationale",
     "skipped",
+    "abandon",
 ]
 
 
@@ -148,7 +149,7 @@ def _load_labels_df() -> pd.DataFrame:
             df = pd.read_csv(LABELS_CSV, encoding="utf-8-sig", keep_default_na=False)
             for col in CSV_COLUMNS:
                 if col not in df.columns:
-                    df[col] = "" if col != "skipped" else False
+                    df[col] = "" if col not in ("skipped", "abandon") else False
             return df[CSV_COLUMNS].copy()
         except Exception:
             pass
@@ -163,7 +164,7 @@ def _labels_index(df: pd.DataFrame) -> Dict[str, Dict[str, Any]]:
     for _, row in df.iterrows():
         record: Dict[str, Any] = {}
         for k in CSV_COLUMNS:
-            if k == "skipped":
+            if k in ("skipped", "abandon"):
                 s = str(row.get(k, "")).strip().lower()
                 record[k] = s in ("true", "1", "yes")
             else:
@@ -181,7 +182,7 @@ def _upsert_label(df: pd.DataFrame, record: Dict[str, Any]) -> pd.DataFrame:
     if mask.any():
         idx = df.index[mask][0]
         for k in CSV_COLUMNS:
-            df.at[idx, k] = record.get(k, "" if k != "skipped" else False)
+            df.at[idx, k] = record.get(k, "" if k not in ("skipped", "abandon") else False)
         return df
 
     return pd.concat([df, pd.DataFrame([record], columns=CSV_COLUMNS)], ignore_index=True)
@@ -249,7 +250,8 @@ def _load_record_into_inputs(record: Optional[Dict[str, Any]]) -> None:
         st.session_state.rationale = ""
         return
 
-    st.session_state.abandon_selected = bool(record.get("skipped", False))
+    # Prefer new dedicated abandon flag; fallback to old skipped for compatibility.
+    st.session_state.abandon_selected = bool(record.get("abandon", record.get("skipped", False)))
     st.session_state.id = _safe_text(record.get("id", ""))
     st.session_state.input_text = _safe_text(record.get("input_text", ""))
     st.session_state.subject = _safe_text(record.get("subject", ""))
@@ -456,29 +458,6 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
         )
         st.stop()
 
-    # Calculate progress: considered done if not skipped and at least one field is filled
-    def _is_done(rec: Dict[str, Any]) -> bool:
-        if bool(rec.get("skipped", False)):
-            return True
-        return any(
-            str(rec.get(k, "")).strip()
-            for k in [
-                "input_text",
-                "subject",
-                "target",
-                "situation",
-                "mechanism",
-                "domain",
-                "culture",
-                "label_Affection",
-                "label_Intent",
-                "label_Attitude",
-                "rationale",
-            ]
-        )
-
-    done_count = sum(1 for p in media_files if _is_done(by_name.get(p.name, {})))
-
     # ====== Two-column layout: Left 70% / Right 30% ======
     left, right = st.columns([0.6, 0.4], gap="small")
 
@@ -567,7 +546,20 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
             # Position progress: follows page navigation (Previous/Pending/Accept/Abandon).
             pos_prog = (current_index + 1) / total if total else 0.0
             st.progress(pos_prog)
-            st.caption(f"Progress: {current_index + 1}/{total} | Done: {done_count}/{total}")
+            st.caption(f"Progress: {current_index + 1}/{total}")
+
+            jump_cols = st.columns([0.6, 0.4], gap="small")
+            with jump_cols[0]:
+                jump_page = st.number_input(
+                    "Page",
+                    min_value=1,
+                    max_value=total,
+                    value=current_index + 1,
+                    step=1,
+                    key="jump_page_input",
+                )
+            with jump_cols[1]:
+                jump_clicked = st.button("Go", use_container_width=True)
 
             nav_cols = st.columns([1, 1, 1, 1], gap="small")
             with nav_cols[0]:
@@ -617,6 +609,9 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
     def _next_index(from_idx: int) -> int:
         return min(from_idx + 1, total - 1)
 
+    if jump_clicked:
+        _go(int(jump_page) - 1)
+
     if lock_toggle_clicked:
         st.session_state.is_locked = not bool(st.session_state.is_locked)
         _rerun()
@@ -640,7 +635,10 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
             "label_Intent": st.session_state.label_Intent,
             "label_Attitude": st.session_state.label_Attitude,
             "rationale": st.session_state.rationale,
-            "skipped": bool(st.session_state.abandon_selected),
+            # Keep old skipped field untouched to avoid destructive overwrite semantics.
+            "skipped": by_name.get(current_path.name, {}).get("skipped", False),
+            # Dedicated abandon state for UI/export filtering.
+            "abandon": bool(st.session_state.abandon_selected),
         }
         labels_df = _upsert_label(labels_df, record)
         _save_labels_df(labels_df)
@@ -664,7 +662,9 @@ div[data-testid="column"]:last-child [data-testid="stVerticalBlock"] { gap: 0.2r
             "label_Intent": st.session_state.label_Intent,
             "label_Attitude": st.session_state.label_Attitude,
             "rationale": st.session_state.rationale,
-            "skipped": bool(st.session_state.abandon_selected),
+            # Keep compatibility column stable; abandon state is stored independently.
+            "skipped": by_name.get(current_path.name, {}).get("skipped", False),
+            "abandon": bool(st.session_state.abandon_selected),
         }
         labels_df = _upsert_label(labels_df, record)
         _save_labels_df(labels_df)

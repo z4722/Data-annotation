@@ -102,7 +102,7 @@ def main() -> None:
     parser.add_argument(
         "--include-skipped",
         action="store_true",
-        help="Include rows with skipped=True.",
+        help="Include rows with abandon/skipped=True.",
     )
     args = parser.parse_args()
 
@@ -128,8 +128,10 @@ def main() -> None:
     result: List[Dict[str, Any]] = []
     for _, row in df.iterrows():
         rec = row.to_dict()
+        abandoned = str(rec.get("abandon", "")).strip().lower() in {"true", "1", "yes"}
         skipped = str(rec.get("skipped", "")).strip().lower() in {"true", "1", "yes"}
-        if skipped and not args.include_skipped:
+        filtered_out = abandoned or skipped
+        if filtered_out and not args.include_skipped:
             continue
 
         filename = _safe_text(rec.get("filename", "")).strip()
