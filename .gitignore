@@ -1,1 +1,11 @@
 images/ 
+.venv
+guide/
+.tessdata/
+tmp*/
+export/
+experiment/
+*tmp*/
+_*/
+figures/
+.env
